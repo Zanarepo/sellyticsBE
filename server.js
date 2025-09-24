@@ -33,7 +33,7 @@ async function sendResetPasswordEmail(userEmail, resetToken) {
   
   try {
     await resend.emails.send({
-      from: 'Sellytics <no-reply@sellytics.com>',
+      from: 'Sellytics <onboarding@resend.dev>',
       to: userEmail,
       subject: 'Reset Your Password',
       html: `
