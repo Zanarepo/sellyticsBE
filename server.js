@@ -12,6 +12,20 @@ const port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 
+
+const corsOptions = {
+  origin: ['http://localhost:4000', 'https://www.sellytcishq.com'], // frontend URLs
+  methods: ['GET','POST','OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight manually (optional but safer)
+app.options('*', cors(corsOptions));
+
+
+
 // Supabase client
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
