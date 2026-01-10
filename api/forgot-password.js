@@ -23,7 +23,7 @@ export default async function handler(req, res) {
   // ✅ Dynamic CORS
   const allowedOrigins = [
     // production
-    'https://www.stores.sellyticshq.com'
+    'https://stores.sellyticshq.com'
   ];
 
   const origin = req.headers.origin;
