@@ -15,11 +15,22 @@ async function hashPassword(password) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:400'); // frontend URL
+  // ✅ Dynamic CORS
+  const allowedOrigins = [
+    'http://localhost:400',
+    'https://www.sellytcishq.com'
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
   res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
+  // Handle preflight
   if (req.method === 'OPTIONS') return res.status(204).end();
+
   if (req.method !== 'POST') return res.status(405).json({ message: 'Method not allowed' });
 
   const { token, newPassword } = req.body;

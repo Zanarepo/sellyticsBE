@@ -14,18 +14,29 @@ async function sendResetPasswordEmail(userEmail, resetToken) {
     from: 'Sellytics <no-reply@sellyticshq.com>',
     to: userEmail,
     subject: 'Reset Your Password',
-    html: `<p>Dear Sellyrics Partner
+    html: `<p>Dear Sellytics Partner,</p>
            <p>Click <a href="${resetLink}">here</a> to reset your password.</p>`
   });
 }
 
 export default async function handler(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:400'); // replace with frontend URL in prod
+  // ✅ Dynamic CORS
+  const allowedOrigins = [
+    'http://localhost:400',
+    'http://localhost:4000',         // sometimes frontend runs on 4000
+    'https://www.sellytcishq.com'   // production
+  ];
+
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
   res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  if (req.method === 'OPTIONS') return res.status(204).end(); // handle preflight
+  // Handle preflight OPTIONS
+  if (req.method === 'OPTIONS') return res.status(204).end();
 
   if (req.method !== 'POST') return res.status(405).json({ message: 'Method not allowed' });
 
