@@ -22,9 +22,7 @@ async function sendResetPasswordEmail(userEmail, resetToken) {
 export default async function handler(req, res) {
   // ✅ Dynamic CORS
   const allowedOrigins = [
-    'http://localhost:400',
-    'http://localhost:4000',         // sometimes frontend runs on 4000
-    'https://www.sellytcishq.com' , // production
+    // production
     'https://www.stores.sellytcishq.com'
   ];
 
