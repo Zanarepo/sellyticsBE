@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   const allowedOrigins = [
     'http://localhost:400',
     'https://www.sellytcishq.com',
-    'https://www.sellytcishq.com'
+    'https://www.stores.sellytcishq.com'
 
   ];
   const origin = req.headers.origin;

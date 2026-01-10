@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     'http://localhost:400',
     'http://localhost:4000',         // sometimes frontend runs on 4000
     'https://www.sellytcishq.com' , // production
-    'https://www.sellytcishq.com'
+    'https://www.stores.sellytcishq.com'
   ];
 
   const origin = req.headers.origin;
