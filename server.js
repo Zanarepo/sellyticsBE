@@ -14,7 +14,7 @@ app.use(cors());
 
 
 const corsOptions = {
-  origin: ['http://localhost:4000', 'https://www.sellytcishq.com'], // frontend URLs
+  origin: ['http://localhost:400', 'http://localhost:4000', 'https://www.sellytcishq.com'],
   methods: ['GET','POST','OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
